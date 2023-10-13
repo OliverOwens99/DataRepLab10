@@ -3,7 +3,7 @@ import Books from "./books";
 function Read() {
 
 
-
+    //data to be passed to the books component
     const data = [
         {
         "title": "Learn Git in a Month of Lunches",
@@ -43,8 +43,8 @@ function Read() {
     return (
         // Read compoentent that dislays to the main react app when called in app.js
         <div>
-            <h3>Hello from Read  compoent </h3>
-            <Books myBooks= {data}></Books>
+            <h2>Hello from Read  compoent </h2>
+            <Books myBooks={data}></Books>
         </div>
     );
 }
