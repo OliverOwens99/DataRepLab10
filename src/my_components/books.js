@@ -1,10 +1,12 @@
+import BookItem from "./bookItem";
+
 function Books(props) {
 
-    return (
-        <div>
-            <h3>Hello from the Books compoent</h3>
-            {console.log(props.myBooks)};
-        </div>
+    return props.myBooks.map(
+        (book) => {
+            // to display data to the screen from the book item component
+            return <BookItem myBooks={book}></BookItem>
+        }
     );
 }
 
