@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './my_components/header';
+import Create from './my_components/create';
 import Content from './my_components/content';
-import Footer from './my_components/footer';
+import Read from './my_components/Read';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -33,9 +33,9 @@ function App() {
           {/* shows content page content using routes */}
           <Route path='/' element={<Content></Content>}></Route>
           {/* shows header page content using routes */}
-          <Route path='create' element={<Header></Header>}></Route>
+          <Route path='create' element={<Create></Create>}></Route>
           {/* shows footer page using routes */}
-          <Route path='read' element={<Footer></Footer>}></Route>
+          <Route path='read' element={<Read></Read>}></Route>
 
         </Routes>
       </div>
