@@ -8,7 +8,7 @@ function Create() {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        console.log("Title: " + title+", Cover: "+cover+", Author: "+author);
+        console.log("Title: " + title+", Author: "+author,+ ", Cover: "+cover);
     };
     return (
         // create compoentent that dislays to the main react app when called in app.js
