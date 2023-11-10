@@ -9,10 +9,10 @@ function Read() {
     //data to be passed to the axios (which is a promise based http client) call to get the data from the api
     useEffect(
         () => {
-            axios.get('https://jsonblob.com/api/jsonblob/1161593332966481920')
+            axios.get('http://localhost:4000/api/books')
                 .then(
                     (response) => {
-                        setData(response.data.books);
+                         setData(response.data.mybooks);
                     }
                 )
                 .catch((error) => console.log(error))

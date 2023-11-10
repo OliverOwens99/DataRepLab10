@@ -1,4 +1,8 @@
+import axios from 'axios';
 import { useState } from 'react';
+
+
+
 function Create() {
 
     const [title, setTitle] = useState('');
@@ -7,8 +11,12 @@ function Create() {
     // handles when the form is submitted with arrow function and log it to the console
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        console.log("Title: " + title+", Author: "+author,+ ", Cover: "+cover);
+
+        console.log("Title: " + title + ", Author: " + author, + ", Cover: " + cover);
+        const book = {title: title, authors: author, cover: cover};
+        axios.post('http://localhost:4000/api/books', book)
+        .then()
+        .catch();
     };
     return (
         // create compoentent that dislays to the main react app when called in app.js
