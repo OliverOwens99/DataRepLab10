@@ -13,6 +13,7 @@ function Create() {
         e.preventDefault();
 
         console.log("Title: " + title + ", Author: " + author, + ", Cover: " + cover);
+        // create a book object to be passed to the axios (which is a promise based http client) call to get the data from the api
         const book = {title: title, authors: author, cover: cover};
         axios.post('http://localhost:4000/api/books', book)
         .then()

@@ -33,10 +33,11 @@ app.get('/api/books', (req, res) => {
 
 //route with post
 app.post('/api/books', (req, res) => {
-    
+
     console.log(req.body.title);
     console.log(req.body.authors);
     console.log(req.body.cover);
+    
     res.send('Book added');
 });
 
