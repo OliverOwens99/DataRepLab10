@@ -30,6 +30,7 @@ app.get('/api/books', async (req, res) => {
 })
 
 // getting-started.js
+//connecting to the database
 const mongoose = require('mongoose');
 
 main().catch(err => console.log(err));
@@ -48,7 +49,7 @@ const BookSchema = new mongoose.Schema({
 
 const bookModel = mongoose.model('books', BookSchema);
 
-//route with post
+//adding a book to the database with a promise
 app.post('/api/books', (req, res) => {
 
     // console.log(req.body.title);
@@ -65,7 +66,7 @@ app.post('/api/books', (req, res) => {
     .catch(()=> {res.send('Book Not Created')})  
     
 });
-
+//finding a book by id
 app.get('/api/books/:id', async(req, res) => {
     console.log(req.params.id);
 
