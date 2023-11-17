@@ -29,6 +29,23 @@ app.get('/api/books', (req, res) => {
 
 })
 
+// getting-started.js
+const mongoose = require('mongoose');
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb+srv://admin:admin@cluster0.8c7ngnf.mongodb.net/?retryWrites=true&w=majority');
+
+  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+}
+//schema for book
+const BookSchema = new mongoose.Schema({
+    title: String,
+    cover: String,
+    authors: String
+  });
+
 
 
 //route with post
