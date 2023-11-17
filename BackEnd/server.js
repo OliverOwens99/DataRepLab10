@@ -23,9 +23,9 @@ app.get('/', (req, res) => {
 })
 
 //route with api
-app.get('/api/books', (req, res) => {
-    const data = [{ "title": "Learn Git in a Month of Lunches", "isbn": "1617292419", "pageCount": 0, "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/umali.jpg", "status": "MEAP", "authors": ["Rick Umali"], "categories": [] }, { "title": "MongoDB in Action, Second Edition", "isbn": "1617291609", "pageCount": 0, "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/banker2.jpg", "status": "MEAP", "authors": ["Kyle Banker", "Peter Bakkum", "Tim Hawkins", "Shaun Verch", "Douglas Garrett"], "categories": [] }, { "title": "Getting MEAN with Mongo, Express, Angular, and Node", "isbn": "1617292036", "pageCount": 0, "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/sholmes.jpg", "status": "MEAP", "authors": ["Simon Holmes"], "categories": [] }];
-    res.json({mybooks:data});
+app.get('/api/books', async (req, res) => {
+    let books =  await bookModel.find({});
+    res.json(books);
 
 })
 
@@ -46,17 +46,33 @@ const BookSchema = new mongoose.Schema({
     authors: String
   });
 
-
+const bookModel = mongoose.model('books', BookSchema);
 
 //route with post
 app.post('/api/books', (req, res) => {
 
-    console.log(req.body.title);
-    console.log(req.body.authors);
-    console.log(req.body.cover);
+    // console.log(req.body.title);
+    // console.log(req.body.authors);
+    // console.log(req.body.cover);
     
-    res.send('Book added');
+    
+    bookModel.create({
+        title:req.body.title,
+        cover:req.body.cover,
+        authors:req.body.authors
+    })
+    .then(()=> {res.send('Book Created')})
+    .catch(()=> {res.send('Book Not Created')})  
+    
 });
+
+app.get('/api/books/:id', async(req, res) => {
+    console.log(req.params.id);
+
+    let book = await bookModel.findById({_id:req.params.id});
+    res.send(book);
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

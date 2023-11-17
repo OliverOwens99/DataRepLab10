@@ -11,7 +11,7 @@ function BookItem(props) {
             {console.log(props.myBooks.title)}
             <CardTitle> Title: {props.myBooks.title}</CardTitle> 
             <CardTitle>Authors: {props.myBooks.authors}</CardTitle>
-            <Card.Img  variant = "top" src={props.myBooks.thumbnailUrl}></Card.Img>
+            <Card.Img  variant = "top" src={props.myBooks.cover}></Card.Img>
             </CardBody>
         </Card>
     );
