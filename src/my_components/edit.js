@@ -12,7 +12,7 @@ export default function Edit(props) {
     // and without the Array objects push() method
     const [title, setTitle] = useState("");
     const [cover, setCover] = useState("");
-    const [author, setAuthor] = useState("");
+    const [authors, setAuthor] = useState("");
     // useNavigate return a function that we can use to navigate
     const navigate = useNavigate();
     //useEffect Hook is similar componentDidMount
@@ -24,7 +24,7 @@ export default function Edit(props) {
             .then((response) => {// Assign Response data to the arrays using useState.
                 setTitle(response.data.title);
                 setCover(response.data.cover);
-                setAuthor(response.data.author);
+                setAuthor(response.data.authors);
             })
             .catch(function (error) {
                 console.log(error);
@@ -36,7 +36,7 @@ export default function Edit(props) {
             id: id,
             title: title,
             cover: cover,
-            author: author
+            authors: authors
         };
         axios.put('http://localhost:4000/api/books/' + id, newBook)
             .then((res) => {
@@ -67,7 +67,7 @@ export default function Edit(props) {
                     <label>Add Author: </label>
                     <input type="text"
                         className="form-control"
-                        value={author}
+                        value={authors}
                         onChange={(e) => setAuthor(e.target.value)}
                     />
                 </div>
