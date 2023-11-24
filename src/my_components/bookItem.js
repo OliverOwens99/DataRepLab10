@@ -1,5 +1,6 @@
 import { CardBody, CardImg, CardTitle } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import {Link } from 'react-router-dom';
 // function to represent a single book item
 function BookItem(props) {
 
@@ -13,6 +14,7 @@ function BookItem(props) {
             <CardTitle>Authors: {props.myBooks.authors}</CardTitle>
             <Card.Img  variant = "top" src={props.myBooks.cover}></Card.Img>
             </CardBody>
+            <Link to={"/edit/" +props.myBooks._id} className='btn btn_primary'>Edit</Link>
         </Card>
     );
 }
