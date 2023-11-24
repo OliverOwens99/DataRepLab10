@@ -56,7 +56,7 @@ app.post('/api/books', (req, res) => {
     // console.log(req.body.authors);
     // console.log(req.body.cover);
 
-
+    //create a book object to be passed to the axios (which is a promise based http client) call to get the data from the api
     bookModel.create({
         title: req.body.title,
         cover: req.body.cover,
