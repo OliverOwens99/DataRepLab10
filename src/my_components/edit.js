@@ -20,7 +20,7 @@ export default function Edit(props) {
         //axios is a promised based web client
         //make a HTTP Request with GET method and pass as part of the
         //url.
-        axios.get('http://localhost:4000/api/book/' + id)
+        axios.get('http://localhost:4000/api/books/' + id)
             .then((response) => {// Assign Response data to the arrays using useState.
                 setTitle(response.data.title);
                 setCover(response.data.cover);
@@ -38,7 +38,7 @@ export default function Edit(props) {
             cover: cover,
             author: author
         };
-        axios.put('http://localhost:4000/api/book/' + id, newBook)
+        axios.put('http://localhost:4000/api/books/' + id, newBook)
             .then((res) => {
                 console.log(res.data);
                 navigate('/read');
@@ -56,7 +56,7 @@ export default function Edit(props) {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Add Release Year: </label>
+                    <label>Add Cover: </label>
                     <input type="text"
                         className="form-control"
                         value={cover}
@@ -64,7 +64,7 @@ export default function Edit(props) {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Add Poster Url: </label>
+                    <label>Add Author: </label>
                     <input type="text"
                         className="form-control"
                         value={author}

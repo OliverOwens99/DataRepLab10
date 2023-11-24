@@ -10,12 +10,12 @@ app.use(bodyParser.json());
 //adddig cors
 const cors = require('cors');
 app.use(cors());
-app.use(function(req, res, next) {
-res.header("Access-Control-Allow-Origin", "*");
-res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-res.header("Access-Control-Allow-Headers",
-"Origin, X-Requested-With, Content-Type, Accept");
-next();
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept");
+    next();
 });
 
 app.get('/', (req, res) => {
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 //route with api
 app.get('/api/books', async (req, res) => {
-    let books =  await bookModel.find({});
+    let books = await bookModel.find({});
     res.json(books);
 
 })
@@ -36,16 +36,16 @@ const mongoose = require('mongoose');
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb+srv://admin:admin@cluster0.8c7ngnf.mongodb.net/?retryWrites=true&w=majority');
+    await mongoose.connect('mongodb+srv://admin:admin@cluster0.8c7ngnf.mongodb.net/?retryWrites=true&w=majority');
 
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+    // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 //schema for book
 const BookSchema = new mongoose.Schema({
     title: String,
     cover: String,
     authors: String
-  });
+});
 
 const bookModel = mongoose.model('books', BookSchema);
 
@@ -55,26 +55,34 @@ app.post('/api/books', (req, res) => {
     // console.log(req.body.title);
     // console.log(req.body.authors);
     // console.log(req.body.cover);
-    
-    
+
+
     bookModel.create({
-        title:req.body.title,
-        cover:req.body.cover,
-        authors:req.body.authors
+        title: req.body.title,
+        cover: req.body.cover,
+        authors: req.body.authors
     })
-    .then(()=> {res.send('Book Created')})
-    .catch(()=> {res.send('Book Not Created')})  
-    
+        .then(() => { res.send('Book Created') })
+        .catch(() => { res.send('Book Not Created') })
+
 });
 
 //finding a book by id
-app.get('/api/books/:id', async(req, res) => {
+app.get('/api/books/:id', async (req, res) => {
     console.log(req.params.id);
 
-    let book = await bookModel.findById({_id:req.params.id});
+    let book = await bookModel.findById({ _id: req.params.id });
     res.send(book);
 })
 
+
+//editing a book by id in databases when the edit form is submitted
+app.put('/api/books/:id', async (req, res) => {
+    console.log("Update: " + req.params.id);
+
+    let book = await bookModel.findByIdAndUpdate(req.params.id, req.body, { new: true },);
+    res.send(book);
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

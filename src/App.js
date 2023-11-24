@@ -37,7 +37,7 @@ function App() {
           {/* shows footer page using routes */}
           <Route path='read' element={<Read></Read>}></Route>
           {/* shows edit page using routes */}
-          <Route path='edit/:id' element={<Create></Create>}></Route>
+          <Route path='edit/:id' element={<Edit></Edit>}></Route>
         </Routes>
       </div>
     </BrowserRouter>
