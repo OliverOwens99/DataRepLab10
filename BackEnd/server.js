@@ -75,6 +75,13 @@ app.get('/api/books/:id', async (req, res) => {
     res.send(book);
 })
 
+//deleting a book by app.delete
+app.delete('/api/books/:id', async (req, res) => {
+    console.log('Delete'+req.params.id);
+
+    let book =  await bookModel.findByIdAndDelete(req.params.id);
+});
+
 
 //editing a book by id in databases when the edit form is submitted
 app.put('/api/books/:id', async (req, res) => {
