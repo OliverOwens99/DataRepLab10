@@ -16,6 +16,7 @@ function BookItem(props) {
                 <CardTitle>Authors: {props.myBooks.authors}</CardTitle>
                 <Card.Img variant="top" src={props.myBooks.cover}></Card.Img>
             </CardBody>
+            {/* edit button to edit a book from the api */}
             <Link to={"/edit/" + props.myBooks._id} className='btn btn-primary'>Edit</Link>
             {/* delete button to delete a book from the api */}
             <Button variant="danger" onClick={
