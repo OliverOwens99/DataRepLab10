@@ -17,11 +17,15 @@ function BookItem(props) {
                 <Card.Img variant="top" src={props.myBooks.cover}></Card.Img>
             </CardBody>
             <Link to={"/edit/" + props.myBooks._id} className='btn btn-primary'>Edit</Link>
+            {/* delete button to delete a book from the api */}
             <Button variant="danger" onClick={
                 (e) => {
                     axios.delete('http://localhost:4000/api/books/' + props.myBooks._id)
-                    .then()
-                    .catch();
+                        .then((res)=>{
+                            console.log('Book Deleted');
+                           let reload =  props.reload();
+                        })
+                        .catch();
                 }
             }>Delete</Button>
         </Card>
