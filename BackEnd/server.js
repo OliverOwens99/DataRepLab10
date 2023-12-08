@@ -5,7 +5,10 @@ const port = 4000
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+//finding the build folder
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
 
 //adddig cors
 const cors = require('cors');
@@ -91,6 +94,11 @@ app.put('/api/books/:id', async (req, res) => {
     let book = await bookModel.findByIdAndUpdate(req.params.id, req.body, { new: true },);
     res.send(book);
 });
+
+//handling any other requests
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/../build/index.html'));
+    });
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
